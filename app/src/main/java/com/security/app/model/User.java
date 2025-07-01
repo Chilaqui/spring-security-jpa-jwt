@@ -23,7 +23,7 @@ public class User implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
+    private String userName;
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -43,7 +43,7 @@ public class User implements UserDetails{
 
     @Override
     public String getUsername() {
-        return username;
+        return userName;
     }
 
     @Override
@@ -78,11 +78,11 @@ public class User implements UserDetails{
     }
 
     public String getUserName() {
-        return username;
+        return userName;
     }
 
     public void setUserName(String userName) {
-        this.username = userName;
+        this.userName = userName;
     }
 
     public String getPassword() {
