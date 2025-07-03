@@ -1,7 +1,5 @@
 package com.security.app.model;
 
-import com.security.app.model.Permission;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
