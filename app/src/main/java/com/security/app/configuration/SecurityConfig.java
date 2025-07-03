@@ -1,11 +1,16 @@
 package com.security.app.configuration;
 
+
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -15,6 +20,8 @@ import com.security.app.service.CustomUserDetailsService;
 
 
 @Configuration
+@EnableWebSecurity
+@EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
     @Bean
@@ -23,11 +30,11 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/auth/login").permitAll()
-                .requestMatchers("/auth/register").hasAnyRole("DEVELOPER")
+                .requestMatchers("/auth/register").permitAll()/* .hasAnyRole("DEVELOPER") */
                 .anyRequest().authenticated()
 
             )
-            /* .httpBasic(Customizer.withDefaults()) */ //Se va a usar jwt
+            .httpBasic(Customizer.withDefaults()) //Se va a usar jwt
             .formLogin(form -> form.disable());
             return http.build();
     }
