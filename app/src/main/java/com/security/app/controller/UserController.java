@@ -31,9 +31,9 @@ public class UserController {
         return ResponseEntity.ok(userService.login(user));
     }
 
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/user")
     public ResponseEntity<String> user(){
-        return ResponseEntity.ok("Hola User");
+        return ResponseEntity.ok("Hola Userbienvenido a las nuevas reglas");
     }
 }
