@@ -1,16 +1,18 @@
 package com.security.app.configuration;
 
-import java.net.http.HttpClient;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.Customizer;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.security.app.service.CustomUserDetailsService;
+
+
 
 @Configuration
 public class SecurityConfig {
@@ -21,12 +23,13 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/auth/login").permitAll()
-                .requestMatchers("/auth/register").hasAnyRole("DEVELOER")
+                .requestMatchers("/auth/register").hasAnyRole("DEVELOPER")
                 .anyRequest().authenticated()
 
             )
-            .httpBasic(Customizer.withDefaults())
+            /* .httpBasic(Customizer.withDefaults()) */ //Se va a usar jwt
             .formLogin(form -> form.disable());
+            return http.build();
     }
 
     @Bean
@@ -38,6 +41,16 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider(CustomUserDetailsService userDetailsService){
+
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
+
     }
 
 }
