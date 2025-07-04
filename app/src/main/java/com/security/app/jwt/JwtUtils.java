@@ -1,11 +1,8 @@
 package com.security.app.jwt;
 
 import java.security.Key;
-import java.security.Signature;
 import java.util.Date;
-
 import org.springframework.security.core.userdetails.UserDetails;
-
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
