@@ -41,12 +41,18 @@ public class JwtUtils {
 
     //Metodos para validar token
 
+    //Extrae el nombre de usuario desde el JWT.
     private Claims extractAlClaims(String token){
         return Jwts.parserBuilder()
                 .setSigningKey(SECRET_KEY)//Defino clave secreta con la que se firma el token
                 .build()//Finaliza la contruccion
                 .parseClaimsJws(token)//Token se analiza y valida (Verifica la firma, verifica caducacion, devulve un objeto Jws<Claims> contiene el cuerpo del token)
                 .getBody();//Obtiene solo el contenido de (claims) del token que es donde estan tus datos
+    }
+
+    //Ontiene la fecha de expiracion
+    private Date extractEspiration(String token){
+        return extractAlClaims(token).getExpiration();
     }
 
     //Junta todo: valida que el usuario coincida y que el token no haya expirado.
