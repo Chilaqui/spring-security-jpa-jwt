@@ -55,6 +55,10 @@ public class JwtUtils {
         return extractAlClaims(token).getExpiration();
     }
 
+    private boolean isTokenEspired(String token){
+        return extractEspiration(token).before(new Date());
+    }
+
     //Junta todo: valida que el usuario coincida y que el token no haya expirado.
     public boolean validarToken(String token,UserDetails userDetails){
 
