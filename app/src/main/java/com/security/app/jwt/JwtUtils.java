@@ -3,12 +3,14 @@ package com.security.app.jwt;
 import java.security.Key;
 import java.util.Date;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
+@Component
 public class JwtUtils {
 
     // Forma basica declarada(Con posibilidad de hacerlo en una variable de entorno
