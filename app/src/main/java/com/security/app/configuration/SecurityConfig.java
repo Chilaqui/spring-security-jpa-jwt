@@ -15,6 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.security.app.jwt.JwtAuthenticationFilter;
 import com.security.app.service.CustomUserDetailsService;
@@ -40,7 +41,8 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
 
             )
-            .httpBasic(Customizer.withDefaults()) //Se va a usar jwt
+            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)// Agregamos el filtro de autenticacion JWT
+            .httpBasic(Customizer.withDefaults()) //Se va a usar jwt(no nos interesa la autenticacion basica)
             .formLogin(form -> form.disable());
             return http.build();
     }
