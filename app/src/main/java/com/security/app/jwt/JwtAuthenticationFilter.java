@@ -33,8 +33,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain)throws ServerException, IOException{
+
         // 1. Obtenemos el token JWT del encabezado de la solicitud
         String authHeader = request.getHeader("Authorization");
+
+        // 2. Verificamos si el token esta presente y comienza con "Bearer "
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            String jwtToken = authHeader.substring(7);// Extraemos el token sin el prefijo "Bearer "
+            String username = jwtUtils.extracUsername(jwtToken);// Extraemos el nombre de usuario del token
+        }
 
         
 
