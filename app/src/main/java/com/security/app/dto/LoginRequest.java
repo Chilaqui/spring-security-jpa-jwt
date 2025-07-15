@@ -2,6 +2,7 @@ package com.security.app.dto;
 
 public class LoginRequest {
 
+    // Esta clase sirve para recibir el JSON del login
     private String username;
     private String password;
 
