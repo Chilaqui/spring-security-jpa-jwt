@@ -50,7 +50,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
                 // 4. Cargamos los detalles del usuario usando el servicio personalizado
                 UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);
 
-                
+                // 5. Validamos el token con ese usuario
+                if (jwtUtils.validarToken(jwtToken, userDetails)) {
+
+                    
+                }
             
             }
         }
