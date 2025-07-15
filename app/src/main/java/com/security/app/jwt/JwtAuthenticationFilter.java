@@ -3,7 +3,6 @@ package com.security.app.jwt;
 import java.io.IOException;
 import java.rmi.ServerException;
 
-import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -34,7 +33,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain)throws ServerException, IOException{
+        // 1. Obtenemos el token JWT del encabezado de la solicitud
+        String authHeader = request.getHeader("Authorization");
 
+        
 
 
                                     }
