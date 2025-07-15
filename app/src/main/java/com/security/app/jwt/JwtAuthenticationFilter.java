@@ -47,6 +47,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
             // 3. Verificamos que el no este autentificaco todabia
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 
+                // 4. Cargamos los detalles del usuario usando el servicio personalizado
+                UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);
+
                 
             
             }
