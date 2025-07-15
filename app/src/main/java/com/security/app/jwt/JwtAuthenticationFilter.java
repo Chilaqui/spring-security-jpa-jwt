@@ -62,6 +62,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
                     
                     authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
+                    // 7. Le decimos a Spring: este usuario ya no esta autenticado
+                    SecurityContextHolder.getContext().setAuthentication(authToken);
                 
                 }
             
@@ -69,9 +71,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
         }
 
         
+        // 8. Continuamos con la cadena de filtros
+        filterChain.doFilter(request, response);
 
-
-                                    }
+        }
 
 
 
