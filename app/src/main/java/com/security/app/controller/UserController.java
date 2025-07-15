@@ -43,9 +43,15 @@ public class UserController {
         return ResponseEntity.ok(token);//Devuelve el token como respuesta
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/user")
     public ResponseEntity<String> user(){
         return ResponseEntity.ok("Hola Userbienvenido a las nuevas reglas");
+    }
+
+    @PreAuthorize("hasRole('DEVELOPER')")
+    @GetMapping("/developer")
+    public ResponseEntity<String> developer(){
+        return ResponseEntity.ok("Hola Developer, entraste con tu token JWT");
     }
 }
