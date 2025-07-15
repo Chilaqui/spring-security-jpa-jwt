@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.rmi.ServerException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -41,6 +43,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String jwtToken = authHeader.substring(7);// Extraemos el token sin el prefijo "Bearer "
             String username = jwtUtils.extracUsername(jwtToken);// Extraemos el nombre de usuario del token
+
+            // 3. Verificamos que el no este autentificaco todabia
+            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                
+                
+            
+            }
         }
 
         
