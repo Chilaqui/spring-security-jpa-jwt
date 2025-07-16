@@ -31,7 +31,7 @@ public class AuthServiceImpl implements AuthService {
 
     //Este es el método principal que implementa la lógica del login.Recibe el username y la password desde el cliente (Postman, frontend, etc.).
     @Override
-    public String login(String username,String password){
+    public String loginJwt(String username,String password){
 
         // 1. Autenticar usuario usando Spring Security
         //Llama a authManager.authenticate(...), que revisa el usuario y la contraseña usando tu UserDetailsService.
@@ -50,7 +50,7 @@ public class AuthServiceImpl implements AuthService {
 
     //Este método se encarga de registrar un nuevo usuario. Recibe el nombre de usuario, la contraseña y el rol del usuario.
     @Override
-    public String register(String username, String password, String role) {
+    public String registerJwt(String username, String password, String role) {
         // Aquí podrías implementar la lógica para registrar un nuevo usuario.
         // Por ejemplo, guardar el usuario en la base de datos y luego generar un token JWT
         if (userRepository.findByUserName(username).isPresent()) {
