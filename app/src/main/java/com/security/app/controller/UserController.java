@@ -22,7 +22,7 @@ public class UserController {
     @Autowired
     private AuthService authService;// Inyectamos el servicio de autenticación con JWT
 
-    //Logins y Registrations simples, sin JWT
+   /*  //Logins y Registrations simples, sin JWT
 
     @PreAuthorize("hasRole('DEVELOPER')")
     @PostMapping("/register")
@@ -46,5 +46,5 @@ public class UserController {
     @GetMapping("/developer")
     public ResponseEntity<String> developer(){
         return ResponseEntity.ok("Hola Developer, entraste con tu token JWT");
-    }
+    } */
 }
