@@ -1,5 +1,15 @@
+-- Contraseña para adminUser: admin456
 INSERT INTO user (user_name, password, role) VALUES
-('adminUser', '$2a$10$e0MYzXyjpJS7Pd0RVvHwHeFXc5j5VTgtrdSV6GB3oKXsd7t1YsaUa', 'ADMIN'),
-('developerUser', '$2a$10$4Rb3L5PqivEmE.7tTPJr3e1aQruPikZ8xW9RO1JYHd0Rk3/WV3zMu', 'DEVELOPER'),
-('managerUser', '$2a$10$eW5z0wuy6Uqa4zRIoPE5bOLxFowc5whFZJeQ9u0zP7HP3ZWy0Gj2G', 'MANAGER'),
-('normalUser', '$2a$10$eXcF9x0XUu0Bv4Yt9TR/2eQ6Krcz0qkKxYzFXK6rDgLwrx0vEpxme', 'USER');
+('adminUser', '$2a$12$uh87.HEmnViGSj.PnP.IIuTrhuF5yFvPUfTAFrIgPBQZTV2jY3Jiq', 'ADMIN');
+
+-- Contraseña para developerUser: dev456
+INSERT INTO user (user_name, password, role) VALUES
+('developerUser', '$2a$12$q1TCLY2y0aTuFTiJlLY/BOtfBbVr8ZqjOCcQ62CnvRTtQ8RcHLA2G', 'DEVELOPER');
+
+-- Contraseña para managerUser: manager456
+INSERT INTO user (user_name, password, role) VALUES
+('managerUser', '$2a$12$dRymZEx.oeXvGqBBM4hGH.uyAWadU.tldO1fTZ2SDSzHZqNI2eQrK', 'MANAGER');
+
+-- Contraseña para normalUser: user456
+INSERT INTO user (user_name, password, role) VALUES
+('normalUser', '$2a$12$8ogk2bsrWSvr7NDyQjRxcu12ItTdfv84ZASdnjWII4me2s8JYmnj6', 'USER');
