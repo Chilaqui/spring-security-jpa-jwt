@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.security.app.dto.LoginRequest;
+import com.security.app.dto.RegisterRequest;
 import com.security.app.service.auth.AuthService;
 
 @RestController
@@ -16,12 +17,25 @@ public class AuthController {
     @Autowired
     private AuthService authService; // Inyectamos el servicio de autenticación con JWT
 
+    @PostMapping("/loginjwt")
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+        // Se llama al servicio para autenticar y generar el JWT
+        String token = authService.loginJwt(
+                            loginRequest.getUsername(), 
+                            loginRequest.getPassword());// Se llama al dto para que podamos recibir JSON
+                                                                                                    
+        return ResponseEntity.ok(token);// Devuelve el token como respuesta
+    }
 
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest){
-        //Se llama al servicio para autenticar y generar el JWT
-        String token = authService.login(loginRequest.getUsername(), loginRequest.getPassword());//Se llama al dto para que podamos recibir JSON
-        return ResponseEntity.ok(token);//Devuelve el token como respuesta
+    @PostMapping("/registerjwt")
+    public ResponseEntity<String> register(@RequestBody RegisterRequest registerRequest) {
+
+        String token = authService.registerJwt(
+                            registerRequest.getUsername(), 
+                            registerRequest.getPassword(), 
+                            registerRequest.getRole()); // Se llama al dto para que podamos recibir JSON
+
+        return ResponseEntity.ok(token); // Devuelve el token como respuesta
     }
 
 }
