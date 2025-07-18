@@ -146,8 +146,6 @@ docker compose up --build -d
 
 - Las contraseñas están **encriptadas con BCrypt** para seguridad
 - El sistema de **roles controla el acceso** a rutas críticas
-- Se recomienda usar **HTTPS para producción**
-- Puedes extender la seguridad agregando **OAuth2** o autorización más fina si es necesario
 
 ---
 
