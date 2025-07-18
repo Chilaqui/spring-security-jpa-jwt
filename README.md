@@ -93,8 +93,8 @@ INSERT INTO user (user_name, password, role) VALUES
 
 ### Autenticación
 
-- **POST /auth/loginjwt**: Recibe JSON con username y password y devuelve un token JWT
-- **POST /auth/registerjwt**: Registro de usuarios con roles
+- **POST /auth/login**: Recibe JSON con username y password y devuelve un token JWT
+- **POST /auth/register**: Registro de usuarios con roles (Colo el DEVELOPER puede crear usuarios)
 
 ### Ejemplos de uso con token
 
